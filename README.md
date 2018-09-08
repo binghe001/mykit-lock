@@ -41,8 +41,8 @@ mykit-lock的测试模块
     <version>1.0-SNAPSHOT</version>
 </dependency>
 ```
-2)在项目的classpath目录下配置redis.properties  
-在项目的classpath目录下创建redis.properties(注意：配置文件的名称必须为redis.properties)，文件中的配置项的Key必须包含以下内容：
+2)在项目的classpath/properties目录下配置redis-lock.properties  
+在项目的classpath/properties目录下创建redis-lock.properties(注意：配置文件的名称必须为redis-lock.properties)，文件中的配置项的Key必须包含以下内容：
 ```
 redis.maxIdle=100
 redis.minIdle=1
