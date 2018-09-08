@@ -17,7 +17,7 @@ public class BaseFactory {
     /**
      * Redis配置文件名称
      */
-    protected static final String FILE_NAME = "redis.properties";
+    protected static final String FILE_NAME = "properties/redis-lock.properties";
 
     /**
      * maxIdle

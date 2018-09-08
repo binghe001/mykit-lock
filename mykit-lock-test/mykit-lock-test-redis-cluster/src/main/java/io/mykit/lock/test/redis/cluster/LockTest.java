@@ -1,45 +1,34 @@
-package io.mykit.lock.test.redis.single;
+package io.mykit.lock.test.redis.cluster;
 
-import io.mykit.lock.redis.single.client.RedisClient;
-import io.mykit.lock.redis.single.factory.RedisFactory;
-import io.mykit.lock.redis.single.interceptor.CacheLockInterceptor;
-import io.mykit.lock.test.redis.single.service.SeckillService;
-import io.mykit.lock.test.redis.single.service.impl.SeckillServiceImpl;
-import org.junit.Before;
+import io.mykit.lock.redis.cluster.factory.RedisFactory;
+import io.mykit.lock.redis.cluster.interceptor.CacheLockInterceptor;
+import io.mykit.lock.test.redis.cluster.service.SeckillService;
+import io.mykit.lock.test.redis.cluster.service.impl.SeckillServiceImpl;
 import org.junit.Test;
-import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisCluster;
 
-import java.io.IOException;
 import java.lang.reflect.Proxy;
 import java.util.concurrent.CountDownLatch;
 
 /**
  * @author liuyazhuang
  * @version 1.0.0
- * @date 2018/9/7 23:40
+ * @date 2018/9/8 19:46
  * @description 测试分布式锁
  */
 public class LockTest {
     private static Long commidityId1 = 10000001L;
     private static Long commidityId2 = 10000002L;
-    private RedisClient client;
-    public static String HOST = "127.0.0.1";
-    private JedisPool jedisPool;
-    @Before
-    public synchronized void  beforeTest() throws IOException {
-
-
-        jedisPool = new JedisPool("127.0.0.1");
-
-    }
 
     @Test
-    public void testGetRedisClient(){
+    public void testGetJedisCluster() throws Exception{
         while (true){
-            RedisFactory.getDefaultClient();
-            System.out.println("打开成功：" + System.currentTimeMillis());
+            JedisCluster jedisCluster = RedisFactory.getJedisCluster();
+            System.out.println("打开成功" + System.currentTimeMillis());
+            jedisCluster.close();
         }
     }
+
     @Test
     public void testSecKill(){
         int threadCount = 1000;
